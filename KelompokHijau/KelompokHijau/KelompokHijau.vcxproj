@@ -171,6 +171,7 @@
     <Image Include="lemari.png" />
     <Image Include="lemari2.png" />
     <Image Include="pintulemari.png" />
+    <Image Include="plafon.png" />
     <Image Include="wallRed.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
