@@ -206,8 +206,6 @@ void Demo::BuildColoredPlafon() {
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	// set up vertex data (and buffer(s)) and configure vertex attributes
-	// ------------------------------------------------------------------
 	float vertices[] = {
 
 		// upper
@@ -220,16 +218,12 @@ void Demo::BuildColoredPlafon() {
 
 	unsigned int indices[] = {
 		0,  1,  2,  0,  2,  3,	 // back
-		//4,  5,  6,  4,  6,  7,   // front
-		//8,  9,  10,  8,  10,  11,   // right
-		//12, 14, 13, 12, 15, 14,  // left
-		//16, 18, 17, 16, 19, 18  // upper
 	};
 
 	glGenVertexArrays(1, &VAOPF);
 	glGenBuffers(1, &VBOPF);
 	glGenBuffers(1, &EBOPF);
-	// bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
+
 	glBindVertexArray(VAOPF);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBOPF);
@@ -246,14 +240,10 @@ void Demo::BuildColoredPlafon() {
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(1);
 
-	// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
-	// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
 	glBindVertexArray(0);
 
-	// remember: do NOT unbind the EBO while a VAO is active as the bound element buffer object IS stored in the VAO; keep the EBO bound.
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 }
@@ -1151,7 +1141,6 @@ void Demo::BuildColoredPintuLaci() {
 		2.3f,	-0.3f,	12.99f,	1.0f, 0.0f,   // 1
 		2.3f,	0.9f,	12.99f,	1.0f, 1.0f,   // 2
 		-0.3f,	0.9f,	12.99f,	0.0f, 1.0f,  // 3
-
 
 		// back
 		-0.3f,	1.1f, 12.99f,	0.0f, 0.0f, // 8 
